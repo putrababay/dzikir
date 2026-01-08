@@ -5,7 +5,21 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Tasbih Digital Luxe</title>
+
+    <title>Tasbih MU - Teman Dzikir Harian</title>
+    <meta
+      name="description"
+      content="Aplikasi Tasbih Digital Modern dengan fitur riwayat harian, target dzikir, dan koleksi 20+ quotes Islami harian." />
+    <meta property="og:title" content="Tasbih Digital Luxe" />
+    <meta
+      property="og:description"
+      content="Mengingat Allah jadi lebih mudah dengan Tasbih Digital Modern." />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=600&q=80" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#064e3b" />
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Amiri:wght@700&display=swap"
@@ -33,7 +47,7 @@
         width: 100%;
         overflow: hidden;
         font-family: "Plus Jakarta Sans", sans-serif;
-        background-color: #0f172a; /* Warna luar container */
+        background-color: #0f172a;
       }
 
       .app-container {
@@ -45,6 +59,28 @@
         display: flex;
         flex-direction: column;
         position: relative;
+      }
+
+      /* LOGIN SCREEN */
+      #login-screen {
+        position: absolute;
+        inset: 0;
+        background: var(--bg);
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px;
+        text-align: center;
+      }
+      .login-input {
+        padding: 18px;
+        border-radius: 15px;
+        border: 2px solid #e2e8f0;
+        margin-bottom: 15px;
+        font-size: 1rem;
+        text-align: center;
+        outline: none;
       }
 
       /* HEADER */
@@ -75,12 +111,17 @@
         padding: 12px;
         border-radius: 12px;
         border: 1px solid #dcfce7;
+        min-height: 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
       .quote-ar {
         font-family: "Amiri", serif;
         font-size: 1.1rem;
         color: var(--primary-dark);
         margin-bottom: 4px;
+        line-height: 1.6;
       }
       .quote-id {
         font-size: 0.6rem;
@@ -98,28 +139,25 @@
         align-items: center;
         padding: 20px;
       }
-
-      .number-box {
-        text-align: center;
-        margin-bottom: 20px;
-      }
       .count-val {
-        font-size: 7.5rem;
+        font-size: 7rem;
         font-weight: 800;
         color: var(--primary-dark);
         line-height: 1;
         letter-spacing: -3px;
+        margin-bottom: 10px;
       }
       .target-info {
         font-size: 0.75rem;
         color: var(--accent);
         font-weight: 700;
+        margin-bottom: 5px;
       }
 
-      /* THE BIG BUTTON - MOST PROMINENT */
+      /* THE BIG BUTTON - ICON VERSION */
       .tap-area {
-        width: 240px;
-        height: 240px;
+        width: 220px;
+        height: 220px;
         background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         border-radius: 50%;
         display: flex;
@@ -132,24 +170,29 @@
           inset 0 -8px 0 rgba(0, 0, 0, 0.1);
         cursor: pointer;
         transition: all 0.1s;
-        position: relative;
       }
       .tap-area:active {
         transform: scale(0.92);
-        box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
       }
-      .tap-area span {
-        font-size: 1.2rem;
+      .dzikir-icon {
+        font-size: 3.5rem;
+        margin-bottom: 5px;
+        line-height: 1;
+      }
+      .tap-label {
+        font-size: 0.8rem;
         font-weight: 800;
         letter-spacing: 2px;
+        text-transform: uppercase;
       }
-      .tap-area small {
-        font-size: 0.6rem;
+      .sub-label {
+        font-size: 0.55rem;
         opacity: 0.8;
-        margin-top: 5px;
+        margin-top: 4px;
+        font-weight: 400;
       }
 
-      /* ACTIONS */
+      /* ACTIONS & HISTORY */
       .action-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -163,7 +206,6 @@
         font-weight: 700;
         font-size: 0.75rem;
         cursor: pointer;
-        transition: 0.2s;
       }
       .btn-reset {
         background: #fee2e2;
@@ -174,7 +216,6 @@
         color: white;
       }
 
-      /* HISTORY */
       .history-panel {
         height: 160px;
         background: white;
@@ -191,15 +232,6 @@
         padding: 10px 0;
         border-bottom: 1px solid #f8fafc;
       }
-      .hist-time {
-        font-size: 0.65rem;
-        color: #94a3b8;
-      }
-      .hist-total {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-      }
       .btn-cont {
         background: var(--accent);
         color: white;
@@ -210,31 +242,6 @@
         font-weight: 700;
       }
 
-      /* LOGIN SCREEN */
-      #login-screen {
-        position: absolute;
-        inset: 0;
-        background: var(--bg);
-        z-index: 100;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 40px;
-        text-align: center;
-      }
-      .login-input {
-        padding: 18px;
-        border-radius: 15px;
-        border: 2px solid #e2e8f0;
-        margin-bottom: 15px;
-        font-size: 1rem;
-        text-align: center;
-        outline: none;
-      }
-      .login-input:focus {
-        border-color: var(--primary);
-      }
-
       .hidden {
         display: none !important;
       }
@@ -243,28 +250,83 @@
   <body>
     <div class="app-container">
       <div id="login-screen">
+        <div
+          style="
+            font-size: 5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 10px 15px rgba(16, 185, 129, 0.2));
+          ">
+          📿
+        </div>
+
         <h1
           style="
             font-weight: 800;
             color: var(--primary-dark);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+            font-size: 2rem;
           ">
-          Tasbih Online
+          Tasbih-MU
         </h1>
-        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 30px">
-          Mulai kebaikan hari ini dengan berdzikir
+        <p
+          style="
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 40px;
+            font-weight: 400;
+            opacity: 0.8;
+          ">
+          Dekatkan diri kepada-Nya setiap waktu
         </p>
-        <input
-          type="text"
-          id="username"
-          class="login-input"
-          placeholder="Nama Lengkap Anda" />
-        <button
-          onclick="initApp()"
-          class="btn btn-save"
-          style="font-size: 1rem; padding: 18px">
-          Mulai Sekarang
-        </button>
+
+        <div style="width: 100%; max-width: 300px; margin: 0 auto">
+          <input
+            type="text"
+            id="username"
+            class="login-input"
+            style="
+              border: none;
+              background: #f1f5f9;
+              border-radius: 20px;
+              margin-bottom: 20px;
+            "
+            placeholder="Nama Lengkap Anda" />
+
+          <button
+            onclick="requestPermissions()"
+            class="btn btn-save"
+            style="
+              font-size: 0.9rem;
+              padding: 18px;
+              width: 100%;
+              border-radius: 20px;
+              box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+            ">
+            Mulai Sekarang
+          </button>
+        </div>
+
+        <div
+          style="
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+          ">
+          <p
+            style="
+              font-size: 0.65rem;
+              color: #cbd5e1;
+              letter-spacing: 1px;
+              font-weight: 600;
+              text-transform: uppercase;
+            ">
+            Created by <br />
+            <span style="color: #94a3b8">Bayu Anggara (08999686850)</span>
+          </p>
+        </div>
       </div>
 
       <div id="app-screen" class="hidden" style="display: contents">
@@ -281,21 +343,27 @@
         </div>
 
         <div class="main-display">
-          <div class="number-box">
-            <div class="target-info">
-              TARGET: <span id="target-display">33</span>
-            </div>
-            <div class="count-val" id="count-display">0</div>
+          <div class="target-info">
+            TARGET:
             <input
               type="number"
               id="target-val"
               value="33"
-              style="display: none" />
+              style="
+                width: 30px;
+                border: none;
+                background: transparent;
+                font-weight: bold;
+                color: var(--accent);
+                outline: none;
+              " />
           </div>
+          <div class="count-val" id="count-display">0</div>
 
           <div class="tap-area" onclick="doCount()">
-            <span>TAP</span>
-            <small>Dzikir Sekarang</small>
+            <div class="dzikir-icon">📿</div>
+            <div class="tap-label">Dzikir</div>
+            <div class="sub-label">Sentuh untuk menghitung</div>
           </div>
         </div>
 
@@ -312,14 +380,14 @@
               margin-bottom: 10px;
               letter-spacing: 1px;
             ">
-            RIWAYAT TERAKHIR
+            RIWAYAT HARI INI
           </h4>
           <div id="history-box"></div>
         </div>
       </div>
     </div>
 
-    <audio id="click-sound">
+    <audio id="click-sound" preload="auto">
       <source
         src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" />
     </audio>
@@ -329,43 +397,116 @@
       const quotes = [
         {
           ar: "فَاذْكُرُونِي أَذْكُرْكُمْ",
-          id: "Ingatlah kamu kepada-Ku, niscaya Aku ingat (pula) kepadamu.",
+          id: "Ingatlah kamu kepada-Ku, niscaya Aku ingat (pula) kepadamu. (QS. Al-Baqarah: 152)",
         },
         {
           ar: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
-          id: "Hanya dengan mengingati Allah-lah hati menjadi tenteram.",
+          id: "Hanya dengan mengingati Allah-lah hati menjadi tenteram. (QS. Ar-Ra'd: 28)",
         },
         {
           ar: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
-          id: "Maha Suci Allah dan segala puji bagi-Nya.",
+          id: "Maha Suci Allah dan segala puji bagi-Nya. (HR. Bukhari)",
+        },
+        {
+          ar: "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+          id: "Tiada daya dan upaya kecuali dengan kekuatan Allah.",
+        },
+        {
+          ar: "أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ",
+          id: "Aku memohon ampun kepada Allah Yang Maha Agung.",
+        },
+        {
+          ar: "يَا حَيُّ يَا قَيُّومُ",
+          id: "Wahai Yang Maha Hidup, Wahai Yang Maha Berdiri Sendiri.",
+        },
+        {
+          ar: "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+          id: "Cukuplah Allah bagi kami, dan Ia sebaik-baik penolong.",
+        },
+        {
+          ar: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ",
+          id: "Ya Allah, limpahkanlah rahmat kepada Nabi Muhammad.",
+        },
+        {
+          ar: "سُبْحَانَ اللَّهِ الْعَظِيمِ",
+          id: "Maha Suci Allah Yang Maha Agung.",
+        },
+        {
+          ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+          id: "Segala puji bagi Allah, Tuhan semesta alam.",
+        },
+        {
+          ar: "لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ",
+          id: "Tiada Tuhan selain Engkau, Maha Suci Engkau.",
+        },
+        {
+          ar: "اللَّهُ أَكْبَرُ كَبِيرًا",
+          id: "Allah Maha Besar dengan segala kebesaran-Nya.",
+        },
+        { ar: "رَبِّ اغْفِرْ لِي", id: "Wahai Tuhanku, ampunilah aku." },
+        {
+          ar: "تَبَارَكَ اللَّهُ رَبُّ الْعَالَمِينَ",
+          id: "Maha Suci Allah, Tuhan semesta alam.",
+        },
+        {
+          ar: "إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+          id: "Sesungguhnya sesudah kesulitan itu ada kemudahan. (QS. Al-Insyirah: 6)",
+        },
+        {
+          ar: "وَتَوَكَّلْ عَلَى اللَّهِ",
+          id: "Dan bertawakallah kepada Allah. (QS. Al-Ahzab: 3)",
+        },
+        {
+          ar: "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+          id: "Sesungguhnya Allah bersama orang-orang yang sabar. (QS. Al-Baqarah: 153)",
+        },
+        {
+          ar: "ادْعُونِي أَسْتَجِبْ لَكُمْ",
+          id: "Berdoalah kepada-Ku, niscaya akan Aku perkenankan bagimu. (QS. Ghafir: 60)",
+        },
+        {
+          ar: "وَقُلْ رَبِّ زِدْنِي عِلْمًا",
+          id: "Dan katakanlah, 'Wahai Tuhanku, tambahkanlah ilmu kepadaku'. (QS. Thaha: 114)",
+        },
+        {
+          ar: "فَإِنِّي قَرِيبٌ",
+          id: "Maka sesungguhnya Aku adalah dekat. (QS. Al-Baqarah: 186)",
         },
       ];
 
       function updateClock() {
         const now = new Date();
-        document.getElementById("live-date").innerText = now.toLocaleDateString(
-          "id-ID",
-          { weekday: "long", day: "numeric", month: "short" }
-        );
-        document.getElementById("live-time").innerText = now.toLocaleTimeString(
-          "id-ID",
-          { hour: "2-digit", minute: "2-digit" }
-        );
+        const dateEl = document.getElementById("live-date");
+        const timeEl = document.getElementById("live-time");
+        if (dateEl && timeEl) {
+          dateEl.innerText = now.toLocaleDateString("id-ID", {
+            weekday: "long",
+            day: "numeric",
+            month: "short",
+          });
+          timeEl.innerText = now.toLocaleTimeString("id-ID", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+        }
       }
       setInterval(updateClock, 1000);
 
-      window.onload = () => {
-        const user = localStorage.getItem("tasbih_user");
-        if (user) setupApp(user);
-        updateClock();
-        const rand = Math.floor(Math.random() * quotes.length);
-        document.getElementById("quote-ar").innerText = quotes[rand].ar;
-        document.getElementById("quote-id").innerText = quotes[rand].id;
-      };
-
-      function initApp() {
+      function requestPermissions() {
         const name = document.getElementById("username").value;
-        if (!name) return Swal.fire("Opps", "Nama wajib diisi", "warning");
+        if (!name) {
+          Swal.fire("Opps", "Nama wajib diisi", "warning");
+          return;
+        }
+        const audio = document.getElementById("click-sound");
+        audio
+          .play()
+          .then(() => {
+            audio.pause();
+            audio.currentTime = 0;
+          })
+          .catch(() => {});
+        if (navigator.vibrate) navigator.vibrate(50);
         localStorage.setItem("tasbih_user", name);
         setupApp(name);
       }
@@ -382,6 +523,12 @@
           count = parseInt(saved);
           document.getElementById("count-display").innerText = count;
         }
+
+        const rand = Math.floor(Math.random() * quotes.length);
+        document.getElementById("quote-ar").innerText = quotes[rand].ar;
+        document.getElementById("quote-id").innerText = quotes[rand].id;
+
+        updateClock();
         renderHistory();
       }
 
@@ -390,13 +537,17 @@
         document.getElementById("count-display").innerText = count;
         localStorage.setItem("tasbih_current", count);
 
-        document.getElementById("click-sound").currentTime = 0;
-        document.getElementById("click-sound").play();
-        if (navigator.vibrate) navigator.vibrate(50);
+        const audio = document.getElementById("click-sound");
+        audio.currentTime = 0;
+        audio.play();
 
-        if (count == document.getElementById("target-val").value) {
+        if (navigator.vibrate) navigator.vibrate(40);
+
+        const target = document.getElementById("target-val").value;
+        if (count == target) {
           Swal.fire({
-            title: "Target Tercapai!",
+            title: "MasyaAllah",
+            text: "Target Tercapai!",
             icon: "success",
             timer: 1500,
             showConfirmButton: false,
@@ -420,12 +571,12 @@
       function handleReset() {
         if (count === 0) return;
         Swal.fire({
-          title: "Reset Hitungan?",
+          title: "Reset?",
           text: "Data akan disimpan ke riwayat",
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#10b981",
-          confirmButtonText: "Ya, Reset",
+          confirmButtonText: "Ya",
         }).then((r) => {
           if (r.isConfirmed) {
             saveData(count);
@@ -451,18 +602,27 @@
         count = val;
         document.getElementById("count-display").innerText = count;
         localStorage.setItem("tasbih_current", count);
+        Swal.fire({
+          title: "Dilanjutkan",
+          icon: "info",
+          toast: true,
+          position: "top",
+          timer: 1000,
+          showConfirmButton: false,
+        });
       }
 
       function renderHistory() {
         const logs = JSON.parse(localStorage.getItem("tasbih_logs")) || [];
         const box = document.getElementById("history-box");
+        if (!box) return;
         box.innerHTML = logs
           .map(
             (item) => `
                 <div class="hist-item">
                     <div>
-                        <div class="hist-total">${item.total} Dzikir</div>
-                        <div class="hist-time">Pukul ${item.time}</div>
+                        <div style="font-size:0.8rem; font-weight:700; color:var(--primary-dark)">${item.total} Dzikir</div>
+                        <div style="font-size:0.6rem; color:#94a3b8;">Pukul ${item.time}</div>
                     </div>
                     <button class="btn-cont" onclick="continueDzikir(${item.total})">LANJUT</button>
                 </div>
@@ -470,6 +630,11 @@
           )
           .join("");
       }
+
+      window.onload = () => {
+        const user = localStorage.getItem("tasbih_user");
+        if (user) setupApp(user);
+      };
     </script>
   </body>
 </html>
