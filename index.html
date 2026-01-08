@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>Tasbih MU - Teman Dzikir Harian</title>
+    <title>Tasbih Digital Luxe - Teman Dzikir Harian</title>
     <meta
       name="description"
       content="Aplikasi Tasbih Digital Modern dengan fitur riwayat harian, target dzikir, dan koleksi 20+ quotes Islami harian." />
@@ -250,83 +250,28 @@
   <body>
     <div class="app-container">
       <div id="login-screen">
-        <div
-          style="
-            font-size: 5rem;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 15px rgba(16, 185, 129, 0.2));
-          ">
-          📿
-        </div>
-
         <h1
           style="
             font-weight: 800;
             color: var(--primary-dark);
-            margin-bottom: 5px;
-            letter-spacing: -1px;
-            font-size: 2rem;
+            margin-bottom: 10px;
           ">
           Tasbih-MU
         </h1>
-        <p
-          style="
-            color: #64748b;
-            font-size: 0.85rem;
-            margin-bottom: 40px;
-            font-weight: 400;
-            opacity: 0.8;
-          ">
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 30px">
           Dekatkan diri kepada-Nya setiap waktu
         </p>
-
-        <div style="width: 100%; max-width: 300px; margin: 0 auto">
-          <input
-            type="text"
-            id="username"
-            class="login-input"
-            style="
-              border: none;
-              background: #f1f5f9;
-              border-radius: 20px;
-              margin-bottom: 20px;
-            "
-            placeholder="Nama Lengkap Anda" />
-
-          <button
-            onclick="requestPermissions()"
-            class="btn btn-save"
-            style="
-              font-size: 0.9rem;
-              padding: 18px;
-              width: 100%;
-              border-radius: 20px;
-              box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
-            ">
-            Mulai Sekarang
-          </button>
-        </div>
-
-        <div
-          style="
-            position: absolute;
-            bottom: 30px;
-            left: 0;
-            right: 0;
-            text-align: center;
-          ">
-          <p
-            style="
-              font-size: 0.65rem;
-              color: #cbd5e1;
-              letter-spacing: 1px;
-              font-weight: 600;
-              text-transform: uppercase;
-            ">
-            Created by <br />
-            <span style="color: #94a3b8">Bayu Anggara (08999686850)</span>
-          </p>
-        </div>
+        <input
+          type="text"
+          id="username"
+          class="login-input"
+          placeholder="Nama Lengkap Anda" />
+        <button
+          onclick="requestPermissions()"
+          class="btn btn-save"
+          style="font-size: 1rem; padding: 18px; width: 100%">
+          Mulai Sekarang
+        </button>
       </div>
 
       <div id="app-screen" class="hidden" style="display: contents">
@@ -343,22 +288,135 @@
         </div>
 
         <div class="main-display">
-          <div class="target-info">
-            TARGET:
-            <input
-              type="number"
-              id="target-val"
-              value="33"
+          <div
+            class="target-container"
+            style="
+              margin-bottom: 20px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 10px;
+            ">
+            <div
+              class="target-chip"
               style="
-                width: 30px;
-                border: none;
-                background: transparent;
-                font-weight: bold;
-                color: var(--accent);
-                outline: none;
-              " />
+                background: #fff8eb;
+                padding: 6px 16px;
+                border-radius: 50px;
+                border: 1px solid #fef3c7;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+              ">
+              <span
+                style="
+                  font-size: 0.65rem;
+                  font-weight: 800;
+                  color: #b45309;
+                  letter-spacing: 1px;
+                "
+                >TARGET:</span
+              >
+              <input
+                type="number"
+                id="target-val"
+                value="33"
+                style="
+                  width: 150px;
+                  border: none;
+                  background: #ffffff;
+                  border-radius: 6px;
+                  font-weight: 800;
+                  color: var(--accent);
+                  text-align: center;
+                  font-size: 0.9rem;
+                  outline: none;
+                  padding: 2px;
+                  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+                " />
+            </div>
+
+            <div style="display: flex; gap: 8px">
+              <button
+                onclick="setQuickTarget(33)"
+                style="
+                  padding: 4px 10px;
+                  border-radius: 8px;
+                  border: 1px solid #e2e8f0;
+                  background: white;
+                  font-size: 0.65rem;
+                  font-weight: 700;
+                  color: #64748b;
+                  cursor: pointer;
+                ">
+                33
+              </button>
+              <button
+                onclick="setQuickTarget(99)"
+                style="
+                  padding: 4px 10px;
+                  border-radius: 8px;
+                  border: 1px solid #e2e8f0;
+                  background: white;
+                  font-size: 0.65rem;
+                  font-weight: 700;
+                  color: #64748b;
+                  cursor: pointer;
+                ">
+                99
+              </button>
+              <button
+                onclick="setQuickTarget(100)"
+                style="
+                  padding: 4px 10px;
+                  border-radius: 8px;
+                  border: 1px solid #e2e8f0;
+                  background: white;
+                  font-size: 0.65rem;
+                  font-weight: 700;
+                  color: #64748b;
+                  cursor: pointer;
+                ">
+                100
+              </button>
+              <button
+                onclick="setQuickTarget(500)"
+                style="
+                  padding: 4px 10px;
+                  border-radius: 8px;
+                  border: 1px solid #e2e8f0;
+                  background: white;
+                  font-size: 0.65rem;
+                  font-weight: 700;
+                  color: #64748b;
+                  cursor: pointer;
+                ">
+                500
+              </button>
+              <button
+                onclick="setQuickTarget(1000)"
+                style="
+                  padding: 4px 10px;
+                  border-radius: 8px;
+                  border: 1px solid #e2e8f0;
+                  background: white;
+                  font-size: 0.65rem;
+                  font-weight: 700;
+                  color: #64748b;
+                  cursor: pointer;
+                ">
+                1000
+              </button>
+            </div>
           </div>
-          <div class="count-val" id="count-display">0</div>
+
+          <div
+            class="count-val"
+            id="count-display"
+            style="font-size: 8rem; margin: 10px 0 30px 0">
+            0
+          </div>
 
           <div class="tap-area" onclick="doCount()">
             <div class="dzikir-icon">📿</div>
@@ -473,6 +531,22 @@
           id: "Maka sesungguhnya Aku adalah dekat. (QS. Al-Baqarah: 186)",
         },
       ];
+
+      // Fungsi untuk mengganti target secara cepat
+      function setQuickTarget(val) {
+        document.getElementById("target-val").value = val;
+        // Berikan getaran kecil sebagai feedback
+        if (navigator.vibrate) navigator.vibrate(30);
+
+        Swal.fire({
+          title: `Target: ${val}`,
+          icon: "info",
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
 
       function updateClock() {
         const now = new Date();
