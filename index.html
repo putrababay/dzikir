@@ -1,256 +1,464 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Tasbih Digital Luxe</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Amiri:wght@700&display=swap"
+      rel="stylesheet" />
+
     <style>
-        :root {
-            --primary: #10b981;
-            --primary-dark: #064e3b;
-            --accent: #f59e0b;
-            --bg: #f8fafc;
-            --text-main: #0f172a;
-        }
+      :root {
+        --primary: #10b981;
+        --primary-dark: #064e3b;
+        --accent: #f59e0b;
+        --bg: #f8fafc;
+        --text-main: #0f172a;
+      }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+      * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+        margin: 0;
+        padding: 0;
+      }
 
-        body, html {
-            height: 100%; width: 100%; overflow: hidden;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0f172a; /* Warna luar container */
-        }
+      body,
+      html {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #0f172a; /* Warna luar container */
+      }
 
-        .app-container {
-            width: 100%; max-width: 480px; height: 100dvh;
-            background: var(--bg); margin: 0 auto;
-            display: flex; flex-direction: column;
-            position: relative;
-        }
+      .app-container {
+        width: 100%;
+        max-width: 480px;
+        height: 100dvh;
+        background: var(--bg);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
 
-        /* HEADER */
-        .header {
-            padding: 20px; text-align: center;
-            background: white; border-bottom: 1px solid #f1f5f9;
-        }
-        .top-meta { display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 10px; }
-        .user-greeting { font-size: 0.9rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px; }
-        
-        .quote-card {
-            background: #f0fdf4; padding: 12px; border-radius: 12px; border: 1px solid #dcfce7;
-        }
-        .quote-ar { font-family: 'Amiri', serif; font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 4px; }
-        .quote-id { font-size: 0.6rem; color: #64748b; line-height: 1.4; font-weight: 400; }
+      /* HEADER */
+      .header {
+        padding: 20px;
+        text-align: center;
+        background: white;
+        border-bottom: 1px solid #f1f5f9;
+      }
+      .top-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: #94a3b8;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .user-greeting {
+        font-size: 0.9rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+        margin-bottom: 12px;
+      }
 
-        /* COUNTER AREA */
-        .main-display {
-            flex-grow: 1; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; padding: 20px;
-        }
-        
-        .number-box { text-align: center; margin-bottom: 20px; }
-        .count-val { font-size: 7.5rem; font-weight: 800; color: var(--primary-dark); line-height: 1; letter-spacing: -3px; }
-        .target-info { font-size: 0.75rem; color: var(--accent); font-weight: 700; }
+      .quote-card {
+        background: #f0fdf4;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid #dcfce7;
+      }
+      .quote-ar {
+        font-family: "Amiri", serif;
+        font-size: 1.1rem;
+        color: var(--primary-dark);
+        margin-bottom: 4px;
+      }
+      .quote-id {
+        font-size: 0.6rem;
+        color: #64748b;
+        line-height: 1.4;
+        font-weight: 400;
+      }
 
-        /* THE BIG BUTTON - MOST PROMINENT */
-        .tap-area {
-            width: 240px; height: 240px;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            border-radius: 50%;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: white; border: 10px solid #ffffff;
-            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3), inset 0 -8px 0 rgba(0,0,0,0.1);
-            cursor: pointer; transition: all 0.1s;
-            position: relative;
-        }
-        .tap-area:active { transform: scale(0.92); box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2); }
-        .tap-area span { font-size: 1.2rem; font-weight: 800; letter-spacing: 2px; }
-        .tap-area small { font-size: 0.6rem; opacity: 0.8; margin-top: 5px; }
+      /* COUNTER AREA */
+      .main-display {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
 
-        /* ACTIONS */
-        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 25px 20px; }
-        .btn {
-            padding: 14px; border: none; border-radius: 16px; font-weight: 700; font-size: 0.75rem;
-            cursor: pointer; transition: 0.2s;
-        }
-        .btn-reset { background: #fee2e2; color: #ef4444; }
-        .btn-save { background: var(--primary-dark); color: white; }
+      .number-box {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .count-val {
+        font-size: 7.5rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+        line-height: 1;
+        letter-spacing: -3px;
+      }
+      .target-info {
+        font-size: 0.75rem;
+        color: var(--accent);
+        font-weight: 700;
+      }
 
-        /* HISTORY */
-        .history-panel {
-            height: 160px; background: white; border-top-left-radius: 30px; border-top-right-radius: 30px;
-            padding: 20px; box-shadow: 0 -10px 25px rgba(0,0,0,0.03); overflow-y: auto;
-        }
-        .hist-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 0; border-bottom: 1px solid #f8fafc;
-        }
-        .hist-time { font-size: 0.65rem; color: #94a3b8; }
-        .hist-total { font-size: 0.8rem; font-weight: 700; color: var(--primary-dark); }
-        .btn-cont { background: var(--accent); color: white; border: none; padding: 4px 10px; border-radius: 8px; font-size: 0.6rem; font-weight: 700; }
+      /* THE BIG BUTTON - MOST PROMINENT */
+      .tap-area {
+        width: 240px;
+        height: 240px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        border: 10px solid #ffffff;
+        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3),
+          inset 0 -8px 0 rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.1s;
+        position: relative;
+      }
+      .tap-area:active {
+        transform: scale(0.92);
+        box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+      }
+      .tap-area span {
+        font-size: 1.2rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+      }
+      .tap-area small {
+        font-size: 0.6rem;
+        opacity: 0.8;
+        margin-top: 5px;
+      }
 
-        /* LOGIN SCREEN */
-        #login-screen { position: absolute; inset: 0; background: var(--bg); z-index: 100; display: flex; flex-direction: column; justify-content: center; padding: 40px; text-align: center; }
-        .login-input { padding: 18px; border-radius: 15px; border: 2px solid #e2e8f0; margin-bottom: 15px; font-size: 1rem; text-align: center; outline: none; }
-        .login-input:focus { border-color: var(--primary); }
+      /* ACTIONS */
+      .action-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        padding: 0 25px 20px;
+      }
+      .btn {
+        padding: 14px;
+        border: none;
+        border-radius: 16px;
+        font-weight: 700;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .btn-reset {
+        background: #fee2e2;
+        color: #ef4444;
+      }
+      .btn-save {
+        background: var(--primary-dark);
+        color: white;
+      }
 
-        .hidden { display: none !important; }
+      /* HISTORY */
+      .history-panel {
+        height: 160px;
+        background: white;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        padding: 20px;
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.03);
+        overflow-y: auto;
+      }
+      .hist-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #f8fafc;
+      }
+      .hist-time {
+        font-size: 0.65rem;
+        color: #94a3b8;
+      }
+      .hist-total {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+      .btn-cont {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 4px 10px;
+        border-radius: 8px;
+        font-size: 0.6rem;
+        font-weight: 700;
+      }
+
+      /* LOGIN SCREEN */
+      #login-screen {
+        position: absolute;
+        inset: 0;
+        background: var(--bg);
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px;
+        text-align: center;
+      }
+      .login-input {
+        padding: 18px;
+        border-radius: 15px;
+        border: 2px solid #e2e8f0;
+        margin-bottom: 15px;
+        font-size: 1rem;
+        text-align: center;
+        outline: none;
+      }
+      .login-input:focus {
+        border-color: var(--primary);
+      }
+
+      .hidden {
+        display: none !important;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="app-container">
-        <div id="login-screen">
-            <h1 style="font-weight: 800; color: var(--primary-dark); margin-bottom: 10px;">Tasbih.io</h1>
-            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 30px;">Mulai kebaikan hari ini dengan berdzikir</p>
-            <input type="text" id="username" class="login-input" placeholder="Nama Lengkap Anda">
-            <button onclick="initApp()" class="btn btn-save" style="font-size: 1rem; padding: 18px;">Mulai Sekarang</button>
+      <div id="login-screen">
+        <h1
+          style="
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+          ">
+          Tasbih Online
+        </h1>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 30px">
+          Mulai kebaikan hari ini dengan berdzikir
+        </p>
+        <input
+          type="text"
+          id="username"
+          class="login-input"
+          placeholder="Nama Lengkap Anda" />
+        <button
+          onclick="initApp()"
+          class="btn btn-save"
+          style="font-size: 1rem; padding: 18px">
+          Mulai Sekarang
+        </button>
+      </div>
+
+      <div id="app-screen" class="hidden" style="display: contents">
+        <div class="header">
+          <div class="top-meta">
+            <span id="live-date">--</span>
+            <span id="live-time">--</span>
+          </div>
+          <div id="display-name" class="user-greeting">--</div>
+          <div class="quote-card">
+            <div id="quote-ar" class="quote-ar"></div>
+            <div id="quote-id" class="quote-id"></div>
+          </div>
         </div>
 
-        <div id="app-screen" class="hidden" style="display: contents;">
-            <div class="header">
-                <div class="top-meta">
-                    <span id="live-date">--</span>
-                    <span id="live-time">--</span>
-                </div>
-                <div id="display-name" class="user-greeting">--</div>
-                <div class="quote-card">
-                    <div id="quote-ar" class="quote-ar"></div>
-                    <div id="quote-id" class="quote-id"></div>
-                </div>
+        <div class="main-display">
+          <div class="number-box">
+            <div class="target-info">
+              TARGET: <span id="target-display">33</span>
             </div>
+            <div class="count-val" id="count-display">0</div>
+            <input
+              type="number"
+              id="target-val"
+              value="33"
+              style="display: none" />
+          </div>
 
-            <div class="main-display">
-                <div class="number-box">
-                    <div class="target-info">TARGET: <span id="target-display">33</span></div>
-                    <div class="count-val" id="count-display">0</div>
-                    <input type="number" id="target-val" value="33" style="display:none">
-                </div>
-                
-                <div class="tap-area" onclick="doCount()">
-                    <span>TAP</span>
-                    <small>Dzikir Sekarang</small>
-                </div>
-            </div>
-
-            <div class="action-grid">
-                <button class="btn btn-reset" onclick="handleReset()">RISET</button>
-                <button class="btn btn-save" onclick="handleSave()">SIMPAN</button>
-            </div>
-
-            <div class="history-panel">
-                <h4 style="font-size: 0.7rem; color: #94a3b8; margin-bottom: 10px; letter-spacing: 1px;">RIWAYAT TERAKHIR</h4>
-                <div id="history-box"></div>
-            </div>
+          <div class="tap-area" onclick="doCount()">
+            <span>TAP</span>
+            <small>Dzikir Sekarang</small>
+          </div>
         </div>
+
+        <div class="action-grid">
+          <button class="btn btn-reset" onclick="handleReset()">RISET</button>
+          <button class="btn btn-save" onclick="handleSave()">SIMPAN</button>
+        </div>
+
+        <div class="history-panel">
+          <h4
+            style="
+              font-size: 0.7rem;
+              color: #94a3b8;
+              margin-bottom: 10px;
+              letter-spacing: 1px;
+            ">
+            RIWAYAT TERAKHIR
+          </h4>
+          <div id="history-box"></div>
+        </div>
+      </div>
     </div>
 
-    <audio id="click-sound"><source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+    <audio id="click-sound">
+      <source
+        src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" />
+    </audio>
 
     <script>
-        let count = 0;
-        const quotes = [
-            {ar: "فَاذْكُرُونِي أَذْكُرْكُمْ", id: "Ingatlah kamu kepada-Ku, niscaya Aku ingat (pula) kepadamu."},
-            {ar: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ", id: "Hanya dengan mengingati Allah-lah hati menjadi tenteram."},
-            {ar: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", id: "Maha Suci Allah dan segala puji bagi-Nya."}
-        ];
+      let count = 0;
+      const quotes = [
+        {
+          ar: "فَاذْكُرُونِي أَذْكُرْكُمْ",
+          id: "Ingatlah kamu kepada-Ku, niscaya Aku ingat (pula) kepadamu.",
+        },
+        {
+          ar: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+          id: "Hanya dengan mengingati Allah-lah hati menjadi tenteram.",
+        },
+        {
+          ar: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+          id: "Maha Suci Allah dan segala puji bagi-Nya.",
+        },
+      ];
 
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('live-date').innerText = now.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'short' });
-            document.getElementById('live-time').innerText = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      function updateClock() {
+        const now = new Date();
+        document.getElementById("live-date").innerText = now.toLocaleDateString(
+          "id-ID",
+          { weekday: "long", day: "numeric", month: "short" }
+        );
+        document.getElementById("live-time").innerText = now.toLocaleTimeString(
+          "id-ID",
+          { hour: "2-digit", minute: "2-digit" }
+        );
+      }
+      setInterval(updateClock, 1000);
+
+      window.onload = () => {
+        const user = localStorage.getItem("tasbih_user");
+        if (user) setupApp(user);
+        updateClock();
+        const rand = Math.floor(Math.random() * quotes.length);
+        document.getElementById("quote-ar").innerText = quotes[rand].ar;
+        document.getElementById("quote-id").innerText = quotes[rand].id;
+      };
+
+      function initApp() {
+        const name = document.getElementById("username").value;
+        if (!name) return Swal.fire("Opps", "Nama wajib diisi", "warning");
+        localStorage.setItem("tasbih_user", name);
+        setupApp(name);
+      }
+
+      function setupApp(name) {
+        document.getElementById("login-screen").classList.add("hidden");
+        document.getElementById("app-screen").classList.remove("hidden");
+        document.getElementById(
+          "display-name"
+        ).innerText = `Assalamualaikum, ${name}`;
+
+        const saved = localStorage.getItem("tasbih_current");
+        if (saved) {
+          count = parseInt(saved);
+          document.getElementById("count-display").innerText = count;
         }
-        setInterval(updateClock, 1000);
+        renderHistory();
+      }
 
-        window.onload = () => {
-            const user = localStorage.getItem('tasbih_user');
-            if(user) setupApp(user);
-            updateClock();
-            const rand = Math.floor(Math.random() * quotes.length);
-            document.getElementById('quote-ar').innerText = quotes[rand].ar;
-            document.getElementById('quote-id').innerText = quotes[rand].id;
+      function doCount() {
+        count++;
+        document.getElementById("count-display").innerText = count;
+        localStorage.setItem("tasbih_current", count);
+
+        document.getElementById("click-sound").currentTime = 0;
+        document.getElementById("click-sound").play();
+        if (navigator.vibrate) navigator.vibrate(50);
+
+        if (count == document.getElementById("target-val").value) {
+          Swal.fire({
+            title: "Target Tercapai!",
+            icon: "success",
+            timer: 1500,
+            showConfirmButton: false,
+          });
         }
+      }
 
-        function initApp() {
-            const name = document.getElementById('username').value;
-            if(!name) return Swal.fire('Opps', 'Nama wajib diisi', 'warning');
-            localStorage.setItem('tasbih_user', name);
-            setupApp(name);
-        }
+      function handleSave() {
+        if (count === 0) return;
+        saveData(count);
+        Swal.fire({
+          title: "Berhasil Disimpan",
+          icon: "success",
+          toast: true,
+          position: "top",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      }
 
-        function setupApp(name) {
-            document.getElementById('login-screen').classList.add('hidden');
-            document.getElementById('app-screen').classList.remove('hidden');
-            document.getElementById('display-name').innerText = `Assalamualaikum, ${name}`;
-            
-            const saved = localStorage.getItem('tasbih_current');
-            if(saved) {
-                count = parseInt(saved);
-                document.getElementById('count-display').innerText = count;
-            }
-            renderHistory();
-        }
-
-        function doCount() {
-            count++;
-            document.getElementById('count-display').innerText = count;
-            localStorage.setItem('tasbih_current', count);
-            
-            document.getElementById('click-sound').currentTime = 0;
-            document.getElementById('click-sound').play();
-            if(navigator.vibrate) navigator.vibrate(50);
-
-            if(count == document.getElementById('target-val').value) {
-                Swal.fire({ title: 'Target Tercapai!', icon: 'success', timer: 1500, showConfirmButton: false });
-            }
-        }
-
-        function handleSave() {
-            if(count === 0) return;
+      function handleReset() {
+        if (count === 0) return;
+        Swal.fire({
+          title: "Reset Hitungan?",
+          text: "Data akan disimpan ke riwayat",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#10b981",
+          confirmButtonText: "Ya, Reset",
+        }).then((r) => {
+          if (r.isConfirmed) {
             saveData(count);
-            Swal.fire({ title: 'Berhasil Disimpan', icon: 'success', toast: true, position: 'top', timer: 2000, showConfirmButton: false });
-        }
+            count = 0;
+            document.getElementById("count-display").innerText = 0;
+            localStorage.setItem("tasbih_current", 0);
+          }
+        });
+      }
 
-        function handleReset() {
-            if(count === 0) return;
-            Swal.fire({
-                title: 'Reset Hitungan?',
-                text: "Data akan disimpan ke riwayat",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#10b981',
-                confirmButtonText: 'Ya, Reset'
-            }).then((r) => {
-                if(r.isConfirmed) {
-                    saveData(count);
-                    count = 0;
-                    document.getElementById('count-display').innerText = 0;
-                    localStorage.setItem('tasbih_current', 0);
-                }
-            });
-        }
+      function saveData(val) {
+        let logs = JSON.parse(localStorage.getItem("tasbih_logs")) || [];
+        const time = new Date().toLocaleTimeString("id-ID", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        logs.unshift({ time, total: val });
+        localStorage.setItem("tasbih_logs", JSON.stringify(logs.slice(0, 10)));
+        renderHistory();
+      }
 
-        function saveData(val) {
-            let logs = JSON.parse(localStorage.getItem('tasbih_logs')) || [];
-            const time = new Date().toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
-            logs.unshift({ time, total: val });
-            localStorage.setItem('tasbih_logs', JSON.stringify(logs.slice(0, 10)));
-            renderHistory();
-        }
+      function continueDzikir(val) {
+        count = val;
+        document.getElementById("count-display").innerText = count;
+        localStorage.setItem("tasbih_current", count);
+      }
 
-        function continueDzikir(val) {
-            count = val;
-            document.getElementById('count-display').innerText = count;
-            localStorage.setItem('tasbih_current', count);
-        }
-
-        function renderHistory() {
-            const logs = JSON.parse(localStorage.getItem('tasbih_logs')) || [];
-            const box = document.getElementById('history-box');
-            box.innerHTML = logs.map(item => `
+      function renderHistory() {
+        const logs = JSON.parse(localStorage.getItem("tasbih_logs")) || [];
+        const box = document.getElementById("history-box");
+        box.innerHTML = logs
+          .map(
+            (item) => `
                 <div class="hist-item">
                     <div>
                         <div class="hist-total">${item.total} Dzikir</div>
@@ -258,8 +466,10 @@
                     </div>
                     <button class="btn-cont" onclick="continueDzikir(${item.total})">LANJUT</button>
                 </div>
-            `).join('');
-        }
+            `
+          )
+          .join("");
+      }
     </script>
-</body>
+  </body>
 </html>
