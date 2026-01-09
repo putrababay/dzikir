@@ -451,12 +451,6 @@
     </audio>
 
     <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("./sw.js");
-        });
-      }
-
       let count = 0;
       const quotes = [
         {
@@ -718,3 +712,18 @@
     </script>
   </body>
 </html>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then((registration) => {
+          console.log("SW terdaftar dengan scope:", registration.scope);
+        })
+        .catch((err) => {
+          console.error("SW gagal terdaftar:", err);
+        });
+    });
+  }
+</script>
