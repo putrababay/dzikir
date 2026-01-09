@@ -999,19 +999,24 @@
     </script>
 
     <script>
-      // Memastikan SW terdaftar dan selalu sinkron dengan jadwal offline
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker.register("./sw.js").then((reg) => {
-            console.log("Offline System Ready!");
+            console.log("Service Worker Terdaftar!");
 
-            // Sinkronisasi jadwal pengingat saat aplikasi dibuka
+            // PENTING: Kirim ulang jadwal ke SW agar timer latar belakang hidup kembali
             const savedTime = localStorage.getItem("dzikir_reminder");
-            if (savedTime && reg.active) {
-              reg.active.postMessage({
-                type: "SET_REMINDER",
-                time: savedTime,
-              });
+            if (savedTime) {
+              // Tunggu sampai SW aktif
+              const checkActive = setInterval(() => {
+                if (reg.active) {
+                  reg.active.postMessage({
+                    type: "SET_REMINDER",
+                    time: savedTime,
+                  });
+                  clearInterval(checkActive);
+                }
+              }, 1000);
             }
           });
         });
