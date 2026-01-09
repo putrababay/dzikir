@@ -339,6 +339,17 @@
             ">
             Mulai Sekarang
           </button>
+          <button
+            id="btn-install"
+            class="btn-notif"
+            style="
+              display: none;
+              background: #064e3b;
+              color: white;
+              border: none;
+            ">
+            <span>📲</span> Pasang Aplikasi
+          </button>
         </div>
 
         <div
@@ -924,6 +935,38 @@
         const user = localStorage.getItem("tasbih_user");
         if (user) setupApp(user);
       };
+
+      let deferredPrompt;
+      const installBtn = document.getElementById("btn-install");
+
+      window.addEventListener("beforeinstallprompt", (e) => {
+        // Mencegah Chrome memunculkan banner otomatis
+        e.preventDefault();
+        // Simpan event agar bisa dipicu nanti
+        deferredPrompt = e;
+        // Tampilkan tombol install kita
+        installBtn.style.display = "flex";
+      });
+
+      installBtn.addEventListener("click", async () => {
+        if (deferredPrompt) {
+          // Munculkan prompt instalasi
+          deferredPrompt.prompt();
+          // Tunggu jawaban user
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User response to install: ${outcome}`);
+          // Sembunyikan tombol karena prompt sudah digunakan
+          deferredPrompt = null;
+          installBtn.style.display = "none";
+        }
+      });
+
+      // Sembunyikan tombol jika aplikasi sudah terinstall
+      window.addEventListener("appinstalled", () => {
+        installBtn.style.display = "none";
+        deferredPrompt = null;
+        console.log("PWA sukses terpasang!");
+      });
     </script>
 
     <script>
