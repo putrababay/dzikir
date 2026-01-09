@@ -58,17 +58,20 @@ self.addEventListener("message", (event) => {
         now.getMinutes()
       ).padStart(2, "0")}`;
 
-      if (current === targetTime) {
-        self.registration.showNotification("Waktunya Dzikir! 📿", {
-          body: "Mari sejenak mengingat Allah agar hati menjadi tenang.",
-          icon: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
-          badge: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
-          tag: "dzikir-notif", // Mencegah duplikasi
-          renotify: true,
-          vibrate: [200, 100, 200],
-          data: { url: "./" },
-        });
-      }
+      self.registration.showNotification("Waktunya Dzikir! 📿", {
+        body: "Mari sejenak mengingat Allah agar hati menjadi tenang.",
+        icon: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
+        badge: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
+        tag: "dzikir-notif",
+        renotify: true,
+        vibrate: [
+          500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110,
+          170, 40,
+        ], // Pola getar lebih kuat
+        silent: false, // Pastikan tidak silent
+        requireInteraction: true, // Notifikasi tetap ada sampai diklik atau di-swipe
+        data: { url: "./" },
+      });
     }, 60000); // Cek setiap menit
   }
 });
