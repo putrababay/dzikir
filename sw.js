@@ -36,22 +36,25 @@ self.addEventListener('message', event => {
     }
 });
 
+// Di dalam sw.js
 function startReminderTimer(targetTime) {
     setInterval(() => {
         const now = new Date();
         const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
         if (currentTime === targetTime) {
+            // PENTING: Gunakan self.registration agar muncul meski aplikasi tertutup
             self.registration.showNotification("Waktunya Dzikir! 📿", {
                 body: "Mari luangkan waktu sejenak untuk mengingat Allah.",
                 icon: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
                 badge: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
                 tag: 'dzikir-reminder',
                 renotify: true,
+                requireInteraction: true, // Notifikasi tetap ada sampai diklik
                 vibrate: [200, 100, 200]
             });
         }
-    }, 60000); // Cek setiap 60 detik
+    }, 60000);
 }
 
 // 4. Fetch Strategy (Sama dengan kode Anda)

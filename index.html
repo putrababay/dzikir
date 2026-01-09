@@ -284,28 +284,83 @@
   <body>
     <div class="app-container">
       <div id="login-screen">
+        <div
+          style="
+            font-size: 5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 10px 15px rgba(16, 185, 129, 0.2));
+          ">
+          📿
+        </div>
+
         <h1
           style="
             font-weight: 800;
             color: var(--primary-dark);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+            font-size: 2rem;
           ">
           Tasbih-MU
         </h1>
-        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 30px">
+        <p
+          style="
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 40px;
+            font-weight: 400;
+            opacity: 0.8;
+          ">
           Dekatkan diri kepada-Nya setiap waktu
         </p>
-        <input
-          type="text"
-          id="username"
-          class="login-input"
-          placeholder="Nama Lengkap Anda" />
-        <button
-          onclick="requestPermissions()"
-          class="btn btn-save"
-          style="font-size: 1rem; padding: 18px; width: 100%">
-          Mulai Sekarang
-        </button>
+
+        <div style="width: 100%; max-width: 300px; margin: 0 auto">
+          <input
+            type="text"
+            id="username"
+            class="login-input"
+            style="
+              border: none;
+              background: #f1f5f9;
+              border-radius: 20px;
+              margin-bottom: 20px;
+            "
+            placeholder="Nama Lengkap Anda" />
+
+          <button
+            onclick="requestPermissions()"
+            class="btn btn-save"
+            style="
+              font-size: 0.9rem;
+              padding: 18px;
+              width: 100%;
+              border-radius: 20px;
+              box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+            ">
+            Mulai Sekarang
+          </button>
+        </div>
+
+        <div
+          style="
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+          ">
+          <p
+            style="
+              font-size: 0.65rem;
+              color: #cbd5e1;
+              letter-spacing: 1px;
+              font-weight: 600;
+              text-transform: uppercase;
+            ">
+            Created by <br />
+            <span style="color: #94a3b8">Bayu Anggara (08999686850)</span>
+          </p>
+        </div>
       </div>
 
       <div id="app-screen" class="hidden" style="display: contents">
