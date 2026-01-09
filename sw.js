@@ -1,42 +1,17 @@
-const CACHE_NAME = 'tasbih-mu-v2';
-const ASSETS_TO_CACHE = [
+// Simpan dengan nama sw.js di folder yang sama dengan index.html
+const CACHE_NAME = 'tasbih-mu-v1';
+const assets = [
     './',
     './index.html',
     './manifest.json',
-    'https://cdn.jsdelivr.net/npm/sweetalert2@11'
+    'https://cdn.jsdelivr.net/npm/sweetalert2@11',
+    'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'
 ];
 
-// Install: Simpan aset ke memori HP
-self.addEventListener('install', event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            console.log('Caching assets...');
-            return cache.addAll(ASSETS_TO_CACHE);
-        })
-    );
-    self.skipWaiting();
+self.addEventListener('install', e => {
+    e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(assets)));
 });
 
-// Activate: Hapus cache lama jika ada update
-self.addEventListener('activate', event => {
-    event.waitUntil(
-        caches.keys().then(keys => {
-            return Promise.all(
-                keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
-            );
-        })
-    );
-});
-
-// Fetch: Logika agar bisa dibuka Offline
-self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request).then(cachedResponse => {
-            // Balas dengan cache jika ada, jika tidak ambil dari network
-            return cachedResponse || fetch(event.request).catch(() => {
-                // Jika offline dan aset tidak ada di cache, berikan respon kosong agar tidak ERR_FAILED
-                return new Response('Offline content not available');
-            });
-        })
-    );
+self.addEventListener('fetch', e => {
+    e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
 });
