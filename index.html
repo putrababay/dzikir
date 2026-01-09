@@ -582,8 +582,8 @@
 
       // Minta Izin Notifikasi & Simpan Waktu
       async function saveReminder() {
-        const time = document.getElementById("reminder-time").value;
-        if (!time) {
+        const timeInput = document.getElementById("reminder-time").value;
+        if (!timeInput) {
           Swal.fire("Opps", "Pilih waktu terlebih dahulu", "warning");
           return;
         }
@@ -592,14 +592,14 @@
         const permission = await Notification.requestPermission();
 
         if (permission === "granted") {
-          // 1. Simpan di LocalStorage (untuk cadangan UI)
-          localStorage.setItem("dzikir_reminder", time);
+          // 1. Simpan ke LocalStorage
+          localStorage.setItem("dzikir_reminder", timeInput);
 
-          // 2. Kirim waktu ke Service Worker agar bisa jalan di latar belakang
+          // 2. Kirim pesan ke Service Worker
           if (navigator.serviceWorker.controller) {
             navigator.serviceWorker.controller.postMessage({
               type: "SET_REMINDER",
-              time: time,
+              time: timeInput,
             });
           }
 
@@ -607,17 +607,14 @@
 
           Swal.fire({
             title: "Pengingat Aktif",
-            text: `Kami akan mengingatkan Anda setiap pukul ${time}. Pastikan aplikasi tidak dibatasi baterai agar tetap bunyi saat HP sleep.`,
+            text: `Kami akan mengingatkan Anda setiap pukul ${timeInput}. Pastikan pengaturan baterai HP "Tidak Dibatasi".`,
             icon: "success",
             confirmButtonColor: "#10b981",
           });
-
-          // Jalankan fungsi lokal jika aplikasi sedang terbuka
-          scheduleNotification();
         } else {
           Swal.fire(
             "Izin Ditolak",
-            "Aktifkan notifikasi di setelan browser/HP untuk menggunakan fitur ini.",
+            "Aktifkan notifikasi di setelan browser/HP.",
             "error"
           );
         }
@@ -910,16 +907,17 @@
     </script>
 
     <script>
+      // Memastikan Service Worker selalu mendapatkan jadwal terbaru setiap kali aplikasi dibuka
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("./sw.js")
-            .then((reg) => {
-              console.log("PWA Aktif!");
-            })
-            .catch((err) => {
-              console.error("Gagal daftar SW:", err);
+        navigator.serviceWorker.ready.then((registration) => {
+          const savedTime = localStorage.getItem("dzikir_reminder");
+          if (savedTime && navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({
+              type: "SET_REMINDER",
+              time: savedTime,
             });
+            console.log("Sinkronisasi jadwal ke SW: " + savedTime);
+          }
         });
       }
     </script>

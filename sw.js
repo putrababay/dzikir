@@ -1,11 +1,12 @@
-const CACHE_NAME = 'tasbih-mu-v1';
+const CACHE_NAME = 'tasbih-mu-v2'; // Naikkan versi cache
 const ASSETS = [
     './',
     './index.html',
-    './manifest.json'
+    './manifest.json',
+    'https://cdn-icons-png.flaticon.com/512/5113/5113795.png'
 ];
 
-// 1. Install & Cache (Sama dengan kode Anda)
+// 1. Install & Cache
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
@@ -15,7 +16,7 @@ self.addEventListener('install', event => {
     self.skipWaiting();
 });
 
-// 2. Aktivasi (Sama dengan kode Anda)
+// 2. Aktivasi & Pembersihan Cache Lama
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(keys => {
@@ -24,40 +25,65 @@ self.addEventListener('activate', event => {
             );
         })
     );
-    self.clients.claim(); // Tambahan agar SW langsung mengontrol halaman
+    self.clients.claim();
 });
 
-// 3. Logika Notifikasi Latar Belakang (TAMBAHKAN INI)
+// 3. Logika Notifikasi Latar Belakang
+let reminderInterval = null;
+
 self.addEventListener('message', event => {
     if (event.data && event.data.type === 'SET_REMINDER') {
         const reminderTime = event.data.time;
-        console.log("Pengingat dijadwalkan di Latar Belakang: " + reminderTime);
+
+        // Bersihkan interval sebelumnya jika user mengganti jam
+        if (reminderInterval) clearInterval(reminderInterval);
+
+        console.log("Jadwal Baru: " + reminderTime);
         startReminderTimer(reminderTime);
     }
 });
 
-// Di dalam sw.js
 function startReminderTimer(targetTime) {
-    setInterval(() => {
+    reminderInterval = setInterval(() => {
         const now = new Date();
         const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
         if (currentTime === targetTime) {
-            // PENTING: Gunakan self.registration agar muncul meski aplikasi tertutup
+            // Cek apakah notifikasi sudah muncul di menit yang sama agar tidak spam
             self.registration.showNotification("Waktunya Dzikir! 📿", {
                 body: "Mari luangkan waktu sejenak untuk mengingat Allah.",
                 icon: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
                 badge: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
-                tag: 'dzikir-reminder',
-                renotify: true,
-                requireInteraction: true, // Notifikasi tetap ada sampai diklik
-                vibrate: [200, 100, 200]
+                tag: 'dzikir-reminder-active', // Tag tetap agar tidak tumpuk
+                renotify: false, // Jangan bunyi ulang di menit yang sama
+                requireInteraction: true,
+                vibrate: [200, 100, 200],
+                data: { url: './' } // Data untuk dibuka saat diklik
             });
         }
-    }, 60000);
+    }, 30000); // Cek setiap 30 detik agar lebih akurat
 }
 
-// 4. Fetch Strategy (Sama dengan kode Anda)
+// 4. Logika Saat Notifikasi Diklik
+self.addEventListener('notificationclick', event => {
+    event.notification.close(); // Tutup notifikasi
+    event.waitUntil(
+        clients.matchAll({ type: 'window' }).then(windowClients => {
+            // Jika aplikasi sudah terbuka, fokuskan. Jika belum, buka baru.
+            for (var i = 0; i < windowClients.length; i++) {
+                var client = windowClients[i];
+                if (client.url === event.notification.data.url && 'focus' in client) {
+                    return client.focus();
+                }
+            }
+            if (clients.openWindow) {
+                return clients.openWindow(event.notification.data.url);
+            }
+        })
+    );
+});
+
+// 5. Fetch Strategy
 self.addEventListener('fetch', event => {
     event.respondWith(
         fetch(event.request).catch(() => {
