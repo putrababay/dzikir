@@ -217,7 +217,7 @@
       }
 
       .history-panel {
-        height: 160px;
+        height: 250px;
         background: white;
         border-top-left-radius: 30px;
         border-top-right-radius: 30px;
@@ -533,22 +533,36 @@
           return;
         }
 
-        // Request Izin
+        // Request Izin Notifikasi
         const permission = await Notification.requestPermission();
+
         if (permission === "granted") {
+          // 1. Simpan di LocalStorage (untuk cadangan UI)
           localStorage.setItem("dzikir_reminder", time);
+
+          // 2. Kirim waktu ke Service Worker agar bisa jalan di latar belakang
+          if (navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({
+              type: "SET_REMINDER",
+              time: time,
+            });
+          }
+
           toggleNotifModal();
+
           Swal.fire({
             title: "Pengingat Aktif",
-            text: `Kami akan mengingatkan Anda setiap pukul ${time}`,
+            text: `Kami akan mengingatkan Anda setiap pukul ${time}. Pastikan aplikasi tidak dibatasi baterai agar tetap bunyi saat HP sleep.`,
             icon: "success",
             confirmButtonColor: "#10b981",
           });
+
+          // Jalankan fungsi lokal jika aplikasi sedang terbuka
           scheduleNotification();
         } else {
           Swal.fire(
             "Izin Ditolak",
-            "Aktifkan notifikasi di setelan browser untuk menggunakan fitur ini.",
+            "Aktifkan notifikasi di setelan browser/HP untuk menggunakan fitur ini.",
             "error"
           );
         }

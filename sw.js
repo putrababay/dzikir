@@ -5,7 +5,7 @@ const ASSETS = [
     './manifest.json'
 ];
 
-// Install: Simpan aset dasar saja agar tidak berat
+// 1. Install & Cache (Sama dengan kode Anda)
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
@@ -15,7 +15,7 @@ self.addEventListener('install', event => {
     self.skipWaiting();
 });
 
-// Aktivasi: Hapus cache lama jika versi berubah
+// 2. Aktivasi (Sama dengan kode Anda)
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(keys => {
@@ -24,9 +24,37 @@ self.addEventListener('activate', event => {
             );
         })
     );
+    self.clients.claim(); // Tambahan agar SW langsung mengontrol halaman
 });
 
-// Fetch: Strategi Network First (Coba internet dulu, kalau gagal baru cache)
+// 3. Logika Notifikasi Latar Belakang (TAMBAHKAN INI)
+self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'SET_REMINDER') {
+        const reminderTime = event.data.time;
+        console.log("Pengingat dijadwalkan di Latar Belakang: " + reminderTime);
+        startReminderTimer(reminderTime);
+    }
+});
+
+function startReminderTimer(targetTime) {
+    setInterval(() => {
+        const now = new Date();
+        const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+        if (currentTime === targetTime) {
+            self.registration.showNotification("Waktunya Dzikir! 📿", {
+                body: "Mari luangkan waktu sejenak untuk mengingat Allah.",
+                icon: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
+                badge: "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
+                tag: 'dzikir-reminder',
+                renotify: true,
+                vibrate: [200, 100, 200]
+            });
+        }
+    }, 60000); // Cek setiap 60 detik
+}
+
+// 4. Fetch Strategy (Sama dengan kode Anda)
 self.addEventListener('fetch', event => {
     event.respondWith(
         fetch(event.request).catch(() => {
