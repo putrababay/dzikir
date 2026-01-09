@@ -4,26 +4,31 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <link rel="manifest" href="manifest.json" />
     <title>TasbihMU Digital - Teman Dzikir Harian</title>
     <meta
       name="description"
-      content="Aplikasi Tasbih Digital Modern dengan fitur riwayat harian, target dzikir, dan koleksi 20+ quotes Islami harian." />
+      content="Aplikasi Tasbih Digital Modern dengan fitur riwayat harian, target dzikir, dan koleksi 20+ quotes Islami harian."
+    />
     <meta property="og:title" content="TasbihMU Digital" />
     <meta
       property="og:description"
-      content="Mengingat Allah jadi lebih mudah dengan Tasbih Digital Modern." />
+      content="Mengingat Allah jadi lebih mudah dengan Tasbih Digital Modern."
+    />
     <meta
       property="og:image"
-      content="https://cdn-icons-png.flaticon.com/512/5113/5113795.png" />
+      content="https://cdn-icons-png.flaticon.com/512/5113/5113795.png"
+    />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#064e3b" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Amiri:wght@700&display=swap"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
 
     <style>
       :root {
@@ -289,7 +294,8 @@
             font-size: 5rem;
             margin-bottom: 20px;
             filter: drop-shadow(0 10px 15px rgba(16, 185, 129, 0.2));
-          ">
+          "
+        >
           📿
         </div>
 
@@ -300,7 +306,8 @@
             margin-bottom: 5px;
             letter-spacing: -1px;
             font-size: 2rem;
-          ">
+          "
+        >
           Tasbih-MU
         </h1>
         <p
@@ -310,7 +317,8 @@
             margin-bottom: 40px;
             font-weight: 400;
             opacity: 0.8;
-          ">
+          "
+        >
           Dekatkan diri kepada-Nya setiap waktu
         </p>
 
@@ -325,7 +333,8 @@
               border-radius: 20px;
               margin-bottom: 20px;
             "
-            placeholder="Nama Lengkap Anda" />
+            placeholder="Nama Lengkap Anda"
+          />
 
           <button
             onclick="requestPermissions()"
@@ -336,7 +345,8 @@
               width: 100%;
               border-radius: 20px;
               box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
-            ">
+            "
+          >
             Mulai Sekarang
           </button>
         </div>
@@ -348,7 +358,8 @@
             left: 0;
             right: 0;
             text-align: center;
-          ">
+          "
+        >
           <p
             style="
               font-size: 0.65rem;
@@ -356,7 +367,8 @@
               letter-spacing: 1px;
               font-weight: 600;
               text-transform: uppercase;
-            ">
+            "
+          >
             Created by <br />
             <span style="color: #94a3b8">Bayu Anggara (08999686850)</span>
           </p>
@@ -385,7 +397,8 @@
               flex-direction: column;
               align-items: center;
               gap: 10px;
-            ">
+            "
+          >
             <div class="action-grid">
               <div
                 class="target-chip"
@@ -398,7 +411,8 @@
                   align-items: center;
                   gap: 8px;
                   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-                ">
+                "
+              >
                 <span
                   style="
                     font-size: 0.65rem;
@@ -424,7 +438,8 @@
                     outline: none;
                     padding: 2px;
                     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-                  " />
+                  "
+                />
               </div>
               <button class="btn-notif" onclick="toggleNotifModal()">
                 <span>🔔</span> Pengingat
@@ -443,7 +458,8 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                ">
+                "
+              >
                 33
               </button>
               <button
@@ -457,7 +473,8 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                ">
+                "
+              >
                 99
               </button>
               <button
@@ -471,7 +488,8 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                ">
+                "
+              >
                 100
               </button>
               <button
@@ -485,7 +503,8 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                ">
+                "
+              >
                 500
               </button>
               <button
@@ -499,7 +518,8 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                ">
+                "
+              >
                 1000
               </button>
 
@@ -511,7 +531,8 @@
                   background: #064e3b;
                   color: white;
                   border: none;
-                ">
+                "
+              >
                 <span>📲</span> Pasang Aplikasi
               </button>
             </div>
@@ -520,7 +541,8 @@
           <div
             class="count-val"
             id="count-display"
-            style="font-size: 8rem; margin: 10px 0 5px 0">
+            style="font-size: 8rem; margin: 10px 0 5px 0"
+          >
             0
           </div>
 
@@ -543,7 +565,8 @@
               color: #94a3b8;
               margin-bottom: 10px;
               letter-spacing: 1px;
-            ">
+            "
+          >
             RIWAYAT HARI INI
           </h4>
           <div id="history-box"></div>
@@ -556,7 +579,8 @@
           left: 0;
           right: 0;
           text-align: center;
-        ">
+        "
+      >
         <p
           style="
             font-size: 0.65rem;
@@ -564,7 +588,8 @@
             letter-spacing: 1px;
             font-weight: 600;
             text-transform: uppercase;
-          ">
+          "
+        >
           Created by <br />
           <span style="color: #94a3b8">Bayu Anggara (08999686850)</span>
         </p>
@@ -590,11 +615,13 @@
             margin-bottom: 20px;
             width: 100%;
             outline: none;
-          " />
+          "
+        />
         <button
           onclick="saveReminder()"
           class="btn btn-save"
-          style="width: 100%">
+          style="width: 100%"
+        >
           Simpan Pengingat
         </button>
       </div>
@@ -602,7 +629,8 @@
 
     <audio id="click-sound" preload="auto">
       <source
-        src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" />
+        src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"
+      />
     </audio>
 
     <script>
@@ -971,17 +999,21 @@
     </script>
 
     <script>
-      // Memastikan Service Worker selalu mendapatkan jadwal terbaru setiap kali aplikasi dibuka
+      // Memastikan SW terdaftar dan selalu sinkron dengan jadwal offline
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.ready.then((registration) => {
-          const savedTime = localStorage.getItem("dzikir_reminder");
-          if (savedTime && navigator.serviceWorker.controller) {
-            navigator.serviceWorker.controller.postMessage({
-              type: "SET_REMINDER",
-              time: savedTime,
-            });
-            console.log("Sinkronisasi jadwal ke SW: " + savedTime);
-          }
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").then((reg) => {
+            console.log("Offline System Ready!");
+
+            // Sinkronisasi jadwal pengingat saat aplikasi dibuka
+            const savedTime = localStorage.getItem("dzikir_reminder");
+            if (savedTime && reg.active) {
+              reg.active.postMessage({
+                type: "SET_REMINDER",
+                time: savedTime,
+              });
+            }
+          });
         });
       }
     </script>
