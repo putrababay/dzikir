@@ -1,12 +1,13 @@
-const CACHE_NAME = "tasbih-mu-v4"; // Naikkan versi
+const CACHE_NAME = "tasbih-mu-v4"; // Naikkan versi ke v4
 const ASSETS = [
   "./",
   "./index.html",
   "./manifest.json",
+  "./sw.js", // Tambahkan file sw itu sendiri ke dalam cache
   "https://cdn.jsdelivr.net/npm/sweetalert2@11",
   "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
   "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Amiri:wght@700&display=swap",
-  "https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3",
+  "audio.mp3",
 ];
 
 // 1. Install: Simpan aset ke Cache

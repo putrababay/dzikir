@@ -825,14 +825,16 @@
           Swal.fire("Opps", "Nama wajib diisi", "warning");
           return;
         }
-        const audio = document.getElementById("click-sound");
+
+        // PENTING UNTUK iOS: Audio harus dipicu pertama kali lewat interaksi user
         audio
           .play()
           .then(() => {
             audio.pause();
             audio.currentTime = 0;
           })
-          .catch(() => {});
+          .catch((e) => console.log("Audio unlock failed:", e));
+
         if (navigator.vibrate) navigator.vibrate(50);
         localStorage.setItem("tasbih_user", name);
         setupApp(name);
@@ -864,9 +866,17 @@
         document.getElementById("count-display").innerText = count;
         localStorage.setItem("tasbih_current", count);
 
-        const audio = document.getElementById("click-sound");
-        audio.currentTime = 0;
-        audio.play();
+        // Gunakan metode play yang lebih responsif
+        if (audio) {
+          audio.pause(); // Reset audio jika sedang berjalan
+          audio.currentTime = 0;
+          const playPromise = audio.play();
+          if (playPromise !== undefined) {
+            playPromise.catch((error) => {
+              console.log("Autoplay dicegah oleh browser");
+            });
+          }
+        }
 
         if (navigator.vibrate) navigator.vibrate(40);
 
