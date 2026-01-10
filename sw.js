@@ -1,13 +1,13 @@
-const CACHE_NAME = "tasbih-mu-v4"; // Naikkan versi ke v4
+const CACHE_NAME = "tasbih-mu-v6"; // Naikkan versi cache
 const ASSETS = [
   "./",
   "./index.html",
   "./manifest.json",
-  "./sw.js", // Tambahkan file sw itu sendiri ke dalam cache
+  "./sw.js",
   "https://cdn.jsdelivr.net/npm/sweetalert2@11",
   "https://cdn-icons-png.flaticon.com/512/5113/5113795.png",
   "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Amiri:wght@700&display=swap",
-  "audio.mp3",
+  "audio.mp3", // Menggunakan audio lokal
 ];
 
 // 1. Install: Simpan aset ke Cache
