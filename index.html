@@ -4,31 +4,26 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="manifest" href="manifest.json" />
     <title>TasbihMU Digital - Teman Dzikir Harian</title>
     <meta
       name="description"
-      content="Aplikasi Tasbih Digital Modern dengan fitur riwayat harian, target dzikir, dan koleksi 20+ quotes Islami harian."
-    />
+      content="Aplikasi Tasbih Digital Modern dengan fitur riwayat harian, target dzikir, dan koleksi 20+ quotes Islami harian." />
     <meta property="og:title" content="TasbihMU Digital" />
     <meta
       property="og:description"
-      content="Mengingat Allah jadi lebih mudah dengan Tasbih Digital Modern."
-    />
+      content="Mengingat Allah jadi lebih mudah dengan Tasbih Digital Modern." />
     <meta
       property="og:image"
-      content="https://cdn-icons-png.flaticon.com/512/5113/5113795.png"
-    />
+      content="https://cdn-icons-png.flaticon.com/512/5113/5113795.png" />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#064e3b" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Amiri:wght@700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
 
     <style>
       :root {
@@ -294,8 +289,7 @@
             font-size: 5rem;
             margin-bottom: 20px;
             filter: drop-shadow(0 10px 15px rgba(16, 185, 129, 0.2));
-          "
-        >
+          ">
           📿
         </div>
 
@@ -306,8 +300,7 @@
             margin-bottom: 5px;
             letter-spacing: -1px;
             font-size: 2rem;
-          "
-        >
+          ">
           Tasbih-MU
         </h1>
         <p
@@ -317,8 +310,7 @@
             margin-bottom: 40px;
             font-weight: 400;
             opacity: 0.8;
-          "
-        >
+          ">
           Dekatkan diri kepada-Nya setiap waktu
         </p>
 
@@ -333,8 +325,7 @@
               border-radius: 20px;
               margin-bottom: 20px;
             "
-            placeholder="Nama Lengkap Anda"
-          />
+            placeholder="Nama Lengkap Anda" />
 
           <button
             onclick="requestPermissions()"
@@ -345,8 +336,7 @@
               width: 100%;
               border-radius: 20px;
               box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
-            "
-          >
+            ">
             Mulai Sekarang
           </button>
         </div>
@@ -358,8 +348,7 @@
             left: 0;
             right: 0;
             text-align: center;
-          "
-        >
+          ">
           <p
             style="
               font-size: 0.65rem;
@@ -367,8 +356,7 @@
               letter-spacing: 1px;
               font-weight: 600;
               text-transform: uppercase;
-            "
-          >
+            ">
             Created by <br />
             <span style="color: #94a3b8">Bayu Anggara (08999686850)</span>
           </p>
@@ -397,8 +385,7 @@
               flex-direction: column;
               align-items: center;
               gap: 10px;
-            "
-          >
+            ">
             <div class="action-grid">
               <div
                 class="target-chip"
@@ -411,8 +398,7 @@
                   align-items: center;
                   gap: 8px;
                   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-                "
-              >
+                ">
                 <span
                   style="
                     font-size: 0.65rem;
@@ -438,8 +424,7 @@
                     outline: none;
                     padding: 2px;
                     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-                  "
-                />
+                  " />
               </div>
               <button class="btn-notif" onclick="toggleNotifModal()">
                 <span>🔔</span> Pengingat
@@ -458,8 +443,7 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                "
-              >
+                ">
                 33
               </button>
               <button
@@ -473,8 +457,7 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                "
-              >
+                ">
                 99
               </button>
               <button
@@ -488,8 +471,7 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                "
-              >
+                ">
                 100
               </button>
               <button
@@ -503,8 +485,7 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                "
-              >
+                ">
                 500
               </button>
               <button
@@ -518,8 +499,7 @@
                   font-weight: 700;
                   color: #64748b;
                   cursor: pointer;
-                "
-              >
+                ">
                 1000
               </button>
 
@@ -531,8 +511,7 @@
                   background: #064e3b;
                   color: white;
                   border: none;
-                "
-              >
+                ">
                 <span>📲</span> Pasang Aplikasi
               </button>
             </div>
@@ -541,8 +520,7 @@
           <div
             class="count-val"
             id="count-display"
-            style="font-size: 8rem; margin: 10px 0 5px 0"
-          >
+            style="font-size: 8rem; margin: 10px 0 5px 0">
             0
           </div>
 
@@ -565,8 +543,7 @@
               color: #94a3b8;
               margin-bottom: 10px;
               letter-spacing: 1px;
-            "
-          >
+            ">
             RIWAYAT HARI INI
           </h4>
           <div id="history-box"></div>
@@ -579,8 +556,7 @@
           left: 0;
           right: 0;
           text-align: center;
-        "
-      >
+        ">
         <p
           style="
             font-size: 0.65rem;
@@ -588,8 +564,7 @@
             letter-spacing: 1px;
             font-weight: 600;
             text-transform: uppercase;
-          "
-        >
+          ">
           Created by <br />
           <span style="color: #94a3b8">Bayu Anggara (08999686850)</span>
         </p>
@@ -615,13 +590,11 @@
             margin-bottom: 20px;
             width: 100%;
             outline: none;
-          "
-        />
+          " />
         <button
           onclick="saveReminder()"
           class="btn btn-save"
-          style="width: 100%"
-        >
+          style="width: 100%">
           Simpan Pengingat
         </button>
       </div>
@@ -630,8 +603,9 @@
     <audio id="click-sound" preload="auto">
       <source src="audio.mp3" type="audio/mpeg" />
     </audio>
+
     <script>
-      // 1. Inisialisasi Variabel Global (Hanya satu kali)
+      // 1. Inisialisasi Variabel Global
       let count = 0;
       let audio = null;
       let deferredPrompt = null;
@@ -642,7 +616,7 @@
           id: "Ingatlah kamu kepada-Ku, niscaya Aku ingat (pula) kepadamu. (QS. Al-Baqarah: 152)",
         },
         {
-          ar: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+          ar: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
           id: "Hanya dengan mengingati Allah-lah hati menjadi tenteram. (QS. Ar-Ra'd: 28)",
         },
         {
@@ -717,32 +691,41 @@
       ];
 
       // 2. Lifecycle Aplikasi
-      window.onload = () => {
-        audio = document.getElementById("click-sound");
+      window.addEventListener("DOMContentLoaded", () => {
+        // Inisialisasi Audio dengan preload agar bisa offline
+        audio = new Audio("./audio.mp3");
+        audio.preload = "auto";
+
         const user = localStorage.getItem("tasbih_user");
         if (user) setupApp(user);
 
-        // Registrasi Service Worker & Sinkronisasi Notifikasi
+        // Registrasi Service Worker
         if ("serviceWorker" in navigator) {
           navigator.serviceWorker.register("./sw.js").then((reg) => {
-            console.log("Service Worker Terdaftar!");
+            console.log("Service Worker Active");
+
+            // Kirim reminder yang tersimpan saat SW siap
             const savedTime = localStorage.getItem("dzikir_reminder");
             if (savedTime) {
-              const checkActive = setInterval(() => {
-                if (reg.active) {
+              if (reg.active) {
+                reg.active.postMessage({
+                  type: "SET_REMINDER",
+                  time: savedTime,
+                });
+              } else {
+                reg.addEventListener("activate", () => {
                   reg.active.postMessage({
                     type: "SET_REMINDER",
                     time: savedTime,
                   });
-                  clearInterval(checkActive);
-                }
-              }, 1000);
+                });
+              }
             }
           });
         }
-      };
+      });
 
-      // 3. Fungsi Utama
+      // 3. Fungsi Utama & Auth
       async function requestPermissions() {
         const nameInput = document.getElementById("username");
         const name = nameInput.value.trim();
@@ -752,7 +735,15 @@
           return;
         }
 
-        // Unlock audio (penting untuk iOS/Mobile)
+        // Unlock audio untuk mobile browser
+        unlockAudio();
+
+        if (navigator.vibrate) navigator.vibrate(50);
+        localStorage.setItem("tasbih_user", name);
+        setupApp(name);
+      }
+
+      function unlockAudio() {
         if (audio) {
           audio
             .play()
@@ -760,12 +751,8 @@
               audio.pause();
               audio.currentTime = 0;
             })
-            .catch((e) => console.log("Audio unlock failed"));
+            .catch((e) => console.log("Audio waiting for interaction"));
         }
-
-        if (navigator.vibrate) navigator.vibrate(50);
-        localStorage.setItem("tasbih_user", name);
-        setupApp(name);
       }
 
       function setupApp(name) {
@@ -781,6 +768,7 @@
           document.getElementById("count-display").innerText = count;
         }
 
+        // Random Quote
         const rand = Math.floor(Math.random() * quotes.length);
         document.getElementById("quote-ar").innerText = quotes[rand].ar;
         document.getElementById("quote-id").innerText = quotes[rand].id;
@@ -796,14 +784,12 @@
         document.getElementById("count-display").innerText = count;
         localStorage.setItem("tasbih_current", count);
 
-        // Pemanggilan audio lokal yang lebih responsif
+        // Audio Play (Reset ke awal agar responsif)
         if (audio) {
-          audio.currentTime = 0; // Reset ke awal agar bisa bunyi cepat saat di-klik berulang
-          audio
-            .play()
-            .catch((e) =>
-              console.log("Audio play blocked by browser interaction policy")
-            );
+          audio.currentTime = 0;
+          audio.play().catch(() => {
+            /* Handle auto-play block */
+          });
         }
 
         if (navigator.vibrate) navigator.vibrate(40);
@@ -854,10 +840,12 @@
 
       function saveData(val) {
         let logs = JSON.parse(localStorage.getItem("tasbih_logs")) || [];
-        const time = new Date().toLocaleTimeString("id-ID", {
+        const now = new Date();
+        const time = now.toLocaleTimeString("id-ID", {
           hour: "2-digit",
           minute: "2-digit",
         });
+
         logs.unshift({ time, total: val });
         localStorage.setItem("tasbih_logs", JSON.stringify(logs.slice(0, 10)));
         renderHistory();
@@ -881,17 +869,18 @@
         const logs = JSON.parse(localStorage.getItem("tasbih_logs")) || [];
         const box = document.getElementById("history-box");
         if (!box) return;
+
         box.innerHTML = logs
           .map(
             (item) => `
-            <div class="hist-item">
-                <div>
-                    <div style="font-size:0.8rem; font-weight:700; color:var(--primary-dark)">${item.total} Dzikir</div>
-                    <div style="font-size:0.6rem; color:#94a3b8;">Pukul ${item.time}</div>
-                </div>
-                <button class="btn-cont" onclick="continueDzikir(${item.total})">LANJUT</button>
-            </div>
-        `
+      <div class="hist-item" style="display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid #eee;">
+          <div>
+              <div style="font-size:0.8rem; font-weight:700; color:#064e3b">${item.total} Dzikir</div>
+              <div style="font-size:0.6rem; color:#94a3b8;">Pukul ${item.time}</div>
+          </div>
+          <button class="btn-cont" onclick="continueDzikir(${item.total})" style="background:#10b981; color:white; border:none; padding:5px 10px; border-radius:5px; font-size:0.7rem;">LANJUT</button>
+      </div>
+    `
           )
           .join("");
       }
@@ -964,25 +953,27 @@
         });
       }
 
-      // PWA Install Logic
+      // 6. PWA Install Logic
       const installBtn = document.getElementById("btn-install");
       window.addEventListener("beforeinstallprompt", (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        installBtn.style.display = "flex";
+        if (installBtn) installBtn.style.display = "flex";
       });
 
-      installBtn.addEventListener("click", async () => {
-        if (deferredPrompt) {
-          deferredPrompt.prompt();
-          const { outcome } = await deferredPrompt.userChoice;
-          deferredPrompt = null;
-          installBtn.style.display = "none";
-        }
-      });
+      if (installBtn) {
+        installBtn.addEventListener("click", async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            deferredPrompt = null;
+            installBtn.style.display = "none";
+          }
+        });
+      }
 
       window.addEventListener("appinstalled", () => {
-        installBtn.style.display = "none";
+        if (installBtn) installBtn.style.display = "none";
         deferredPrompt = null;
       });
     </script>
