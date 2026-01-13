@@ -1,7 +1,7 @@
 {
   "name": "Tasbih-MU Digital",
   "short_name": "Tasbih-MU",
-  "start_url": "",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#064e3b",
