@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -6,19 +6,73 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="manifest" href="manifest.json" />
-    <title>TasbihMU Digital - Teman Dzikir Harian</title>
+
+    <title>TasbihMU Digital - Aplikasi Tasbih Online & Penghitung Dzikir</title>
+    <meta
+      name="title"
+      content="TasbihMU Digital - Aplikasi Tasbih Online & Penghitung Dzikir" />
     <meta
       name="description"
-      content="Aplikasi Tasbih Digital Modern dengan fitur riwayat harian, target dzikir, dan koleksi 20+ quotes Islami harian." />
-    <meta property="og:title" content="TasbihMU Digital" />
+      content="Aplikasi Tasbih Digital Modern gratis. Fitur riwayat harian, target dzikir, getaran, dan koleksi 20+ quotes Islami harian untuk menemani dzikir Anda." />
+    <meta
+      name="keywords"
+      content="tasbih digital, tasbih online, counter dzikir, penghitung rakaat, aplikasi dzikir, tasbihmu, tasbih digital mobile" />
+    <meta name="author" content="Bayu Anggara" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://tasbih.sibag.us/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tasbih.sibag.us/" />
+    <meta
+      property="og:title"
+      content="📿 TasbihMU Digital - Teman Dzikir Harian Modern" />
     <meta
       property="og:description"
-      content="Mengingat Allah jadi lebih mudah dengan Tasbih Digital Modern." />
+      content="Mengingat Allah jadi lebih mudah dengan Tasbih Digital Modern. Lengkap dengan target dzikir dan riwayat harian." />
     <meta
       property="og:image"
       content="https://cdn-icons-png.flaticon.com/512/5113/5113795.png" />
-    <meta property="og:type" content="website" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://tasbih.sibag.us/" />
+    <meta
+      property="twitter:title"
+      content="📿 TasbihMU Digital - Aplikasi Tasbih Online" />
+    <meta
+      property="twitter:description"
+      content="Aplikasi Tasbih Digital dengan fitur riwayat harian dan target dzikir." />
+    <meta
+      property="twitter:image"
+      content="https://cdn-icons-png.flaticon.com/512/5113/5113795.png" />
+
     <meta name="theme-color" content="#064e3b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TasbihMU" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "TasbihMU Digital",
+        "alternateName": "Tasbih Digital Online",
+        "description": "Aplikasi tasbih digital modern untuk menghitung dzikir harian dengan fitur riwayat dan target.",
+        "url": "https://tasbih.sibag.us/",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web, Android, iOS",
+        "author": {
+          "@type": "Person",
+          "name": "Bayu Anggara"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "IDR"
+        }
+      }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link
@@ -166,7 +220,8 @@
         align-items: center;
         color: white;
         border: 10px solid #ffffff;
-        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3),
+        box-shadow:
+          0 20px 40px rgba(16, 185, 129, 0.3),
           inset 0 -8px 0 rgba(0, 0, 0, 0.1);
         cursor: pointer;
         transition: all 0.1s;
@@ -758,9 +813,8 @@
       function setupApp(name) {
         document.getElementById("login-screen").classList.add("hidden");
         document.getElementById("app-screen").classList.remove("hidden");
-        document.getElementById(
-          "display-name"
-        ).innerText = `Assalamualaikum, ${name}`;
+        document.getElementById("display-name").innerText =
+          `Assalamualaikum, ${name}`;
 
         const saved = localStorage.getItem("tasbih_current");
         if (saved) {
@@ -880,7 +934,7 @@
           </div>
           <button class="btn-cont" onclick="continueDzikir(${item.total})" style="background:#10b981; color:white; border:none; padding:5px 10px; border-radius:5px; font-size:0.7rem;">LANJUT</button>
       </div>
-    `
+    `,
           )
           .join("");
       }
@@ -918,7 +972,7 @@
           Swal.fire(
             "Izin Ditolak",
             "Aktifkan notifikasi di setelan browser.",
-            "error"
+            "error",
           );
         }
       }
